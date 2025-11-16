@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>추첨 기록</h2>
+
+<ul>
+  {% for d in draws %}
+  <li>
+    <a href="{% url 'admin_winners' d.draw_number %}">
+      {{ d.draw_number }}회차 — {{ d.winning_numbers }} (보너스: {{d.bonus_number }})
+    </a>
+  </li>
+  {% empty %}
+  <li>아직 추첨 기록 없음</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

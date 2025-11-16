@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>당첨자 결과 ({{ results.0.draw_number }}회차)</h2>
+
+<ul>
+  {% for r in results %}
+  <li>
+    {{ r.user }} — {{ r.numbers|join:"," }} — {{ r.draw_number }}회차
+    <br>
+    <small>고유 ID: <strong>{{ r.unique_code }}</strong></small>
+    <br>
+    <small>결과:</small>
+    {% if r.rank %}
+        <strong>{{ r.rank }}등 ({{ r.prize }}원)</strong>
+    {% else %}
+        <strong>꽝</strong>
+    {% endif %}
+  </li>
+  <hr>
+  {% empty %}
+  <li>참여한 구매 없음</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

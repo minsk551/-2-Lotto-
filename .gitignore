@@ -1,0 +1,41 @@
+# ===== Python 기본 =====
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*$py.class
+
+# ===== 가상환경 =====
+venv/
+env/
+ENV/
+.venv/
+pip-wheel-metadata/
+
+# ===== Django =====
+db.sqlite3
+*.sqlite3
+media/
+staticfiles/
+
+# Django secret files
+.env
+*.env
+.env.*
+
+# ===== IDE / 에디터 =====
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ===== 배포/빌드 파일 =====
+*.log
+*.pot
+*.pyc
+*.zip
+*.tar.gz
+
+# ===== OS 파일 =====
+.DS_Store
+Thumbs.db

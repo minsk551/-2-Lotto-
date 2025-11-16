@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>내 당첨 결과</h2>
+
+{% if results %}
+    <ul>
+    {% for r in results %}
+        <li class="box">
+            <b>{{ r.purchase.draw_number }}회차</b><br>
+            번호: {{ r.purchase.numbers }}<br>
+
+            {% if r.status == "pending" %}
+                <span style="color: orange; font-weight: bold;">결과: 대기중 (아직 추첨되지 않음)</span>
+
+            {% else %}
+                {% if r.rank %}
+                    <span style="color: green; font-weight: bold;">
+                        {{ r.rank }}등 당첨!
+                    </span><br>
+                    일치개수: {{ r.match }}개 / 보너스: {{ r.bonus }}
+                {% else %}
+                    <span style="color: red; font-weight: bold;">
+                        꽝 
+                    </span>
+                {% endif %}
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>아직 구매한 로또가 없습니다.</p>
+{% endif %}
+
+{% endblock %}

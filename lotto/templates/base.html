@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lotto Service</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 30px;
+      }
+      header {
+        margin-bottom: 20px;
+      }
+      a {
+        margin-right: 15px;
+      }
+      .box {
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+      }
+      .auth-area {
+        float: right;
+      }
+      .logout-btn {
+        background: none;
+        border: none;
+        color: blue;
+        cursor: pointer;
+        padding: 0;
+        font-size: 1em;
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+
+      <!-- 공통 메뉴 -->
+      <a href="/">홈</a>
+
+      <!-- 일반 사용자 메뉴 (staff가 아닐 때만) -->
+      {% if user.is_authenticated and not user.is_staff %}
+        <a href="/buy/">로또 구매</a>
+        <a href="/my-results/">내 로또 구매 / 당첨 결과</a>
+      {% endif %}
+
+      <!-- 관리자 메뉴 (staff만 표시) -->
+      {% if user.is_authenticated and user.is_staff %}
+        <a href="/lotto-admin/draw/">관리자: 추첨</a>
+        <a href="/lotto-admin/draw/list/">추첨 리스트</a>
+        <a href="/lotto-admin/sales/">판매 실적 보기</a>
+      {% endif %}
+
+      <!-- 로그인 / 로그아웃 영역 -->
+      <span class="auth-area">
+        {% if user.is_authenticated %}
+          <b>{{ user.username }}</b> 님 환영합니다!
+
+          <!-- 로그아웃: POST 방식 -->
+          <form action="/accounts/logout/" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="logout-btn">로그아웃</button>
+          </form>
+
+        {% else %}
+          <a href="/accounts/login/">로그인</a>
+          <a href="/signup/">회원가입</a>
+        {% endif %}
+      </span>
+
+    </header>
+
+    <hr />
+    {% block content %}{% endblock %}
+  </body>
+</html>

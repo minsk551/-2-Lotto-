@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>로또 서비스 메인</h2>
+
+<div class="box">
+  <h3>최근 추첨 회차</h3>
+  <ul>
+    {% for d in draws %}
+    <li>
+      {{ d.draw_number }}회차 — {{ d.winning_numbers }} (보너스: {{d.bonus_number }})
+    </li>
+    {% empty %}
+    <li>아직 추첨 기록 없음</li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}

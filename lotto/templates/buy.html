@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>로또 구매</h2>
+<p>{{ next_draw_number }}회차 구매</p>
+
+<form method="post">
+    {% csrf_token %}
+
+    <!-- 구매 방식 선택 -->
+    <label>
+        <input type="radio" name="mode" value="auto" checked>
+        자동 번호 생성
+    </label>
+    <br>
+
+    <label>
+        <input type="radio" name="mode" value="manual">
+        수동 입력
+    </label>
+
+    <div id="manual_box" style="margin-top:10px; display:none;">
+        <input type="text" name="numbers" placeholder="예: 1, 5, 10, 22, 33, 40" style="width:200px;">
+        <br><small>숫자 6개, 1~45 범위, 중복 금지</small>
+    </div>
+
+    <br><br>
+    <button type="submit">구매하기</button>
+</form>
+
+<script>
+    // 자동 / 수동 선택 시 수동 입력칸 보여주기
+    const radios = document.getElementsByName("mode");
+    const manualBox = document.getElementById("manual_box");
+
+    radios.forEach(r => {
+        r.addEventListener("change", function () {
+            if (this.value === "manual") {
+                manualBox.style.display = "block";
+            } else {
+                manualBox.style.display = "none";
+            }
+        });
+    });
+</script>
+
+{% endblock %}

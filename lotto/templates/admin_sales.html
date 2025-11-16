@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>회차별 판매 실적</h2>
+
+<table border="1" cellpadding="8">
+  <tr>
+    <th>회차</th>
+    <th>구매 건수</th>
+  </tr>
+
+  {% for item in stats %}
+  <tr>
+    <td>{{ item.draw_number }}회차</td>
+    <td>{{ item.total_sales }}건</td>
+  </tr>
+
+  {% empty %}
+  <tr>
+    <td colspan="2">아직 판매 기록이 없습니다.</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<br />
+<a href="/lotto-admin/draw/">← 추첨하기</a>
+{% endblock %}

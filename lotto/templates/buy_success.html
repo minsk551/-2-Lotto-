@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>구매 완료</h2>
+
+<div class="box">
+  <p><strong>구매자:</strong> {{ purchase.user_name }}</p>
+  <p><strong>번호:</strong> {{ purchase.numbers }}</p>
+  <p><strong>회차:</strong> {{ purchase.draw_number }}</p>
+  <p><strong>고유 ID:</strong> {{ purchase.unique_code }}</p>
+</div>
+
+<a href="/my-results/">구매 내역 / 당첨 결과 보기</a>
+
+{% endblock %}
