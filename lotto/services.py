@@ -49,7 +49,7 @@ def draw_lotto(draw_number):
     return draw
 
 
-# 6) 당첨 확인 로직 (user_name → user.username 변경)
+# 6) 당첨 확인 로직 
 def check_winners(draw_number):
     draw = LottoDraw.objects.get(draw_number=draw_number)
     

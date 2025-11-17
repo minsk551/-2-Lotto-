@@ -1,32 +1,36 @@
 services:
   web:
     build: .
-    container_name: django_lotto_32220623
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
+    container_name: lotto_web_32220623
+    command: gunicorn lotto_site.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/app
-    environment:
-      - DB_NAME=lotto
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
-      - DB_HOST=db
-      - DB_PORT=5432
+    expose:
+      - "8000"
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:latest
+    container_name: lotto_nginx_32220623
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - web
 
   db:
     image: postgres:15
-    container_name: postgres_lotto_32220623
-    restart: always
+    container_name: lotto_postgres_32220623
     environment:
       POSTGRES_DB: lotto
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-    ports:
-      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
 volumes:
   pgdata:
