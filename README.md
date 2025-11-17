@@ -8,7 +8,7 @@
 
 
 3. docker-compose로 빌드 및 실행
-docker-compose up --build<br><br>
+- docker-compose up --build<br><br>
 
 
 4. Django 초기 설정
@@ -24,9 +24,9 @@ docker-compose up --build<br><br>
 
 6. 서비스 기능 요약<br>
 
-수동/자동 로또 구매<br>
-회차별 추첨 (관리자)<br>
-당첨 결과 확인<br>
-회차별 판매 실적 (관리자)
+- 수동/자동 로또 구매<br>
+- 회차별 추첨 (관리자)<br>
+- 당첨 결과 확인<br>
+- 회차별 판매 실적 (관리자)
  
 
