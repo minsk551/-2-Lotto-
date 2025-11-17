@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse
 from django.db.models import Count
 from django.contrib import messages
+from .models import LottoPurchase, LottoDraw, Winner
 
 from .services import (
     auto_purchase, 
@@ -115,18 +116,6 @@ def admin_winners(request, draw_number):
     results = check_winners(draw_number)
     return render(request, "admin_winners.html", {"results": results})
 
-# 관리자: 실적 확인
-@staff_member_required
-def admin_sales(request):
-    stats = (
-        LottoPurchase.objects
-        .values("draw_number")
-        .annotate(total_sales=Count("id"))
-        .order_by("-draw_number")
-    )
-    return render(request, "admin_sales.html", {"stats": stats})
-
-
 
 
 def signup_view(request):
@@ -195,3 +184,27 @@ def my_results(request):
         })
 
     return render(request, "my_results.html", {"results": results})
+
+# 관리자: 실적 확인
+@staff_member_required
+def admin_sales(request):
+
+    all_draws = LottoDraw.objects.order_by('-draw_number')
+    sales_data = []
+
+    for draw in all_draws:
+        draw_no = draw.draw_number
+
+        purchase_count = LottoPurchase.objects.filter(draw_number=draw_no).count()
+        sales_amount = purchase_count * 5000
+
+        winner_count = Winner.objects.filter(purchase__draw_number=draw_no).count()
+
+        sales_data.append({
+            "draw_number": draw_no,
+            "purchase_count": purchase_count,
+            "sales_amount": sales_amount,
+            "winner_count": winner_count,
+        })
+
+    return render(request, "admin_sales.html", {"sales_data": sales_data})

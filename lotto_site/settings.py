@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     
     # 추가
     'lotto',
+    'django.contrib.humanize',
 ]
 
 LOGIN_REDIRECT_URL = '/'

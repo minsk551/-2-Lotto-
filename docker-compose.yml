@@ -1,7 +1,7 @@
 services:
   web:
     build: .
-    container_name: django_lotto
+    container_name: django_lotto_32220623
     ports:
       - "8000:8000"
     depends_on:
@@ -17,7 +17,7 @@ services:
 
   db:
     image: postgres:15
-    container_name: postgres_lotto
+    container_name: postgres_lotto_32220623
     restart: always
     environment:
       POSTGRES_DB: lotto

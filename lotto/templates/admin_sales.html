@@ -1,23 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+{% load humanize %}
 <h2>회차별 판매 실적</h2>
 
 <table border="1" cellpadding="8">
   <tr>
     <th>회차</th>
     <th>구매 건수</th>
+    <th>판매 금액</th>
+    <th>당첨자 수</th>
   </tr>
 
-  {% for item in stats %}
+  {% for item in sales_data %}
   <tr>
     <td>{{ item.draw_number }}회차</td>
-    <td>{{ item.total_sales }}건</td>
+    <td>{{ item.purchase_count }}건</td>
+    <td>{{ item.sales_amount|intcomma }}원</td>
+    <td>{{ item.winner_count }}명</td>
   </tr>
-
   {% empty %}
   <tr>
-    <td colspan="2">아직 판매 기록이 없습니다.</td>
+    <td colspan="4">아직 판매 기록이 없습니다.</td>
   </tr>
   {% endfor %}
 </table>
