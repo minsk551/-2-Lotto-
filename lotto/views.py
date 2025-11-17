@@ -32,7 +32,7 @@ def buy(request):
     next_draw_number = latest.draw_number + 1 if latest else 1
 
     if request.method == "POST":
-        user = request.user        # user_name 대신 로그인 유저
+        user = request.user      
         mode = request.POST.get("mode")
         draw_number = next_draw_number
 
@@ -122,9 +122,9 @@ def signup_view(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()        # Django가 자동으로 암호화해 저장
-            login(request, user)      # 자동 로그인
-            return redirect("home")   # 홈으로 이동 (또는 index)
+            user = form.save()       
+            login(request, user)      
+            return redirect("home") 
     else:
         form = UserCreationForm()
 
@@ -148,7 +148,7 @@ def my_results(request):
         if draw is None:
             results.append({
                 "purchase": p,
-                "status": "pending",  # 대기중
+                "status": "pending",
                 "rank": None,
                 "match": None,
                 "bonus": None

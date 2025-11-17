@@ -19,6 +19,7 @@ from django.urls import path, include
 from lotto.views import signup_view
 
 urlpatterns = [
+    # 관리자
     path('admin/', admin.site.urls),
 
     # 회원가입

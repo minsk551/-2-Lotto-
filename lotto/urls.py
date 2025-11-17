@@ -14,7 +14,7 @@ urlpatterns = [
     path("buy/success/<int:purchase_id>/", views.buy_success, name="buy_success"),
     path("my-results/", views.my_results, name="my_results"),
 
-    # 관리자(관리자 페이지와 충돌 방지 위해 lotto-admin 사용)
+    # 관리자(관리자 페이지와 충돌 방지 -> lotto-admin 사용)
     path("lotto-admin/draw/", views.admin_draw, name="admin_draw"),
     path("lotto-admin/draw/list/", views.admin_draw_list, name="admin_draw_list"),
     path("lotto-admin/winners/<int:draw_number>/", views.admin_winners, name="admin_winners"),
