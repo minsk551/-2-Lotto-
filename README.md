@@ -26,8 +26,8 @@
 
 5. 관리자(Admin) 계정 정보
 - 서버가 정상 실행되면 아래 관리자 계정으로 로그인 가능합니다:
-> ID: RootManager
-> Password: manager0515!!
+- ID: RootManager
+- Password: manager0515!!
 
 
 
