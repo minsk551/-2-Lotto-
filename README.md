@@ -1,32 +1,32 @@
 1. 프로젝트 다운로드
 - 방법 A) GitHub에서 클론
-- 방법 B) ZIP 다운로드
+- 방법 B) ZIP 다운로드<br><br>
 
 
 2. 프로젝트 디렉토리로 이동
-- cd 2-Lotto--master
+- cd 2-Lotto--master<br><br>
 
 
 3. docker-compose로 빌드 및 실행
-docker-compose up --build
+docker-compose up --build<br><br>
 
 
 4. Django 초기 설정
 - docker exec -it lotto_web_32220623 bash
   (docker ps로 확인 가능)
 - python manage.py migrate
-- python manage.py createsuperuser
+- python manage.py createsuperuser<br><br>
 
 
 5. 웹사이트 접속 주소
-- http://localhost:8000
+- http://localhost:8000<br><br>
 
 
-6. 서비스 기능 요약
+6. 서비스 기능 요약<br>
 
-수동/자동 로또 구매
-회차별 추첨 (관리자)
-당첨 결과 확인
+수동/자동 로또 구매<br>
+회차별 추첨 (관리자)<br>
+당첨 결과 확인<br>
 회차별 판매 실적 (관리자)
  
 
